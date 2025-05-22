@@ -4,8 +4,8 @@ site_url: http://www.example.com
 
 theme:
   name: material
-#  features:
-#    - navigation.indexes
+  features:
+    - navigation.indexes
 
 plugins:
   - search
