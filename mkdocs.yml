@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
 site_name: Blog Tutorial
 site_description: an example blog set up following the tutorial
-site_url: http://www.example.com
+site_url: https://jerrylee.github.io
 
 theme:
   name: material
