@@ -1,6 +1,6 @@
 ---
-date:
-  created: 2024-12-31
+date: 2024-12-31
+
 ---
 
 # Happy new years eve!
