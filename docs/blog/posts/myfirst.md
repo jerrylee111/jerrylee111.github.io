@@ -1,6 +1,7 @@
 ---
-date: 2025-12-31
-
+date:
+    created:2025-12-31
+    updated:2025-12-31
 ---
 
 # Happy new years eve!
