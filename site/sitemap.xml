@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>http://www.example.com/</loc>
+         <loc>https://jerrylee.github.io/</loc>
          <lastmod>2025-05-23</lastmod>
     </url>
     <url>
-         <loc>http://www.example.com/blog/</loc>
+         <loc>https://jerrylee.github.io/blog/</loc>
          <lastmod>2025-05-23</lastmod>
     </url>
     <url>
-         <loc>http://www.example.com/blog/2024/12/31/happy-new-years-eve/</loc>
+         <loc>https://jerrylee.github.io/blog/2026/12/31/happy-new-years-eve/</loc>
          <lastmod>2025-05-23</lastmod>
     </url>
     <url>
-         <loc>http://www.example.com/blog/archive/2024/</loc>
+         <loc>https://jerrylee.github.io/blog/archive/2026/</loc>
          <lastmod>2025-05-23</lastmod>
     </url>
 </urlset>
