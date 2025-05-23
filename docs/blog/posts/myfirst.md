@@ -15,8 +15,6 @@ tags:
   - new year
   - hogmanay
   - festive season
-authors:
-  - team
 slug: ny-eve
 ---
 
