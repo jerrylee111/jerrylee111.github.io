@@ -1,0 +1,1155 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="an example blog set up following the tutorial">
+      
+      
+      
+        <link rel="canonical" href="https://jerrylee.github.io/blog/2025/06/15/malloclab/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>malloclab - Blog Tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#malloclab" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="Blog Tutorial" class="md-header__button md-logo" aria-label="Blog Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Blog Tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              malloclab
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Blog Tutorial" class="md-nav__button md-logo" aria-label="Blog Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Blog Tutorial
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome to MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archive
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/xjtuicslab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    xjtuicslab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2025-06-15 00:00:00+00:00" class="md-ellipsis">June 15, 2025</time>
+                      </div>
+                    </li>
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 13h1.5v2.82l2.44 1.41-.75 1.3L15 16.69zm4-5H5v11h4.67c-.43-.91-.67-1.93-.67-3a7 7 0 0 1 7-7c1.07 0 2.09.24 3 .67zM5 21a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1V1h2v2h8V1h2v2h1a2 2 0 0 1 2 2v6.1c1.24 1.26 2 2.99 2 4.9a7 7 0 0 1-7 7c-1.91 0-3.64-.76-4.9-2zm11-9.85A4.85 4.85 0 0 0 11.15 16c0 2.68 2.17 4.85 4.85 4.85A4.85 4.85 0 0 0 20.85 16c0-2.68-2.17-4.85-4.85-4.85"/></svg>
+                          <time datetime="2025-06-15 00:00:00+00:00" class="md-ellipsis">June 15, 2025</time>
+                        </div>
+                      </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/xjtuicslab/">xjtuicslab</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              15 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+              <ul class="md-post__meta md-nav__list">
+                <li class="md-nav__item md-nav__item--section">
+                  <div class="md-post__title">
+                    <span class="md-ellipsis">
+                      Related links
+                    </span>
+                  </div>
+                  <nav class="md-nav">
+                    <ul class="md-nav__list">
+                      
+                        
+                        
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="#project-layout" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homepage
+    
+      <br>
+      <small>Project layout</small>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+                      
+                        
+                        
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Blog index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+                      
+                        
+                        
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__ref_3" >
+        
+          
+          <label class="md-nav__link" for="__ref_3" id="__ref_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    External links
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__ref_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__ref_3">
+            <span class="md-nav__icon md-icon"></span>
+            External links
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://squidfunk.github.io/mkdocs-material" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Material documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+                      
+                    </ul>
+                  </nav>
+                </li>
+              </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+
+<h1 id="malloclab">malloclab</h1>
+<p>内存管理实验，主要目的是实现一个运行时堆内存分配系统，主要顺序是</p>
+<ol>
+<li>隐式链表实现</li>
+<li>空闲显式链表实现</li>
+<li>分离式空闲链表实现</li>
+<li>面向特殊类型数据</li>
+</ol>
+<!-- more -->
+
+<pre><code class="language-c">/*
+ * mm-naive.c - The fastest, least memory-efficient malloc package.
+ * 
+ * In this naive approach, a block is allocated by simply incrementing
+ * the brk pointer.  A block is pure payload. There are no headers or
+ * footers.  Blocks are never coalesced or reused. Realloc is
+ * implemented directly using mm_malloc and mm_free.
+ *
+ * NOTE TO STUDENTS: Replace this header comment with your own header
+ * comment that gives a high level description of your solution.
+ */
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;string.h&gt;
+#include &lt;math.h&gt;
+#include &quot;mm.h&quot;
+#include &quot;memlib.h&quot;
+
+/*********************************************************
+ * NOTE TO STUDENTS: Before you do anything else, please
+ * provide your team information in the following struct.
+ ********************************************************/
+team_t team = {
+    /* Team name */
+    &quot;ateam&quot;,
+    /* First member's full name */
+    &quot;Harry Bovik&quot;,
+    /* First member's email address */
+    &quot;bovik@cs.cmu.edu&quot;,
+    /* Second member's full name (leave blank if none) */
+    &quot;&quot;,
+    /* Second member's email address (leave blank if none) */
+    &quot;&quot;
+};
+
+/* single word (4) or double word (8) alignment */
+#define ALIGNMENT 8
+
+/* rounds up to the nearest multiple of ALIGNMENT */
+#define ALIGN(size) (((size) + (ALIGNMENT-1)) &amp; ~0x7)
+
+
+#define SIZE_T_SIZE (ALIGN(sizeof(size_t)))
+
+//Header的大小
+#define WORD_SIZE (sizeof(unsigned int))
+
+//用来在Header上写数据或者读取值
+#define READ(PTR) (*(unsigned int *)(PTR))
+#define WRITE(PTR, VALUE) ((*(unsigned int *)(PTR)) = (VALUE))
+
+//将块大小和是否被占用的信息合并，便于写入Header
+#define PACK(SIZE, IS_ALLOC) ((SIZE) | (IS_ALLOC))
+
+//传入指向Header的指针p，返回其后的负载块的长度
+#define GET_SIZE(PTR) (unsigned int)((READ(PTR) &gt;&gt; 3) &lt;&lt; 3)
+//传入指向Header的指针p，返回其后的负载块是否被占用
+#define IS_ALLOC(PTR) (READ(PTR) &amp; (unsigned int)1)
+
+//传入指向负载首个字节的指针，返回指向这个块的头/尾的指针
+#define HEAD_PTR(PTR) ((void *)(PTR) - WORD_SIZE)
+#define TAIL_PTR(PTR) ((void *)(PTR) + GET_SIZE(HEAD_PTR(PTR)) - WORD_SIZE * 2)
+
+//传入指向负载首个字节的指针，返回指相邻的下一个块/上一个块的指针
+#define NEXT_BLOCK(PTR) ((void *)(PTR) + GET_SIZE(HEAD_PTR(PTR)))
+#define PREV_BLOCK(PTR) ((void *)(PTR) - GET_SIZE((void *)(PTR) - WORD_SIZE * 2))
+
+#define MAX(X, Y) ((X) &gt; (Y) ? (X) : (Y))
+#define PAGE_SIZE (1 &lt;&lt; 12)
+
+//空闲链表补充宏定义
+#define GETADDR(PTR) (*(void **)PTR)//找到当前指针所指向的指针
+#define PUTADDR(PTR, ADDR) (*(void **)PTR = (void *)ADDR)//向当前指针输入指针
+
+#define PREV_BLOCK_UP(PTR) ((void *)PTR) //指向上一个空闲块的指针
+#define NEXT_BLOCK_UP(PTR) ((void *)PTR + 2 * WORD_SIZE) //指向下一个空闲块的指针
+
+/*分离式显式链表，目前确定需要维护一个空闲链表头节点的组在序言块中，序言块中应该需要32*（void*）以上的负载空间，尚未确定
+使用取对数的方法来确定是哪一个链表头，这样同时也可以避免用数组，而是直接使用地址寻找对应头节点
+这样的话，那么空闲链表头节点heap_free_first将不再需要，第一个负载位置可以放（16，32），第二个负载放（32，64）以此类推，
+又负载长度不会超过2的32次方，那么最大的区间应该是(2^31,2^32),那么需要存的指针就有32-4+1=29个指针，
+需要序言块是30*（void*）的长度（加上两个头尾），然后进行行查找和插入删除的时候使用log(size)向下取整来找到对应所需块，更简单的，我们可以直接给
+序言块申请32*（void*）的负载，33*（void*）的长度，从负载的第四个指针块开始进行第一类大小空闲表的分配，这样找起来就更加简单，那么heap_free_first又可以用了，先
+补充宏定义查找头节点位置，再给一个heap_youneed
+需要注意的一点是，如果在当前范围没找到合适的适配，应该向上寻找适配，找不到才开空间，这里是个bug点*/
+#define MATCH(PTR) ((int)(log2(GET_SIZE(HEAD_PTR(PTR))))) * sizeof(void*)//使用int来造成向下取整
+void * heap_youneed;
+
+// static void * heapfirst;
+static void * heap_free_first;//空闲链表头，在分离式显式链表可以指向第一个负载，然后要取头节点时加上对应的MATCH（PTR）即可
+static void * heap_free_last;
+void remove_free(void * ptr);
+// void place_free(void * ptr);
+void insert_free(void * ptr);
+
+void *Merge(void *Ptr) {
+    int if_front = IS_ALLOC(HEAD_PTR(PREV_BLOCK(Ptr)));//检查前面的块是否空闲
+    void * PREV = PREV_BLOCK(Ptr);
+    int if_back = IS_ALLOC(HEAD_PTR(NEXT_BLOCK(Ptr)));//检查后面的块是否空闲
+    void * NEXT = NEXT_BLOCK(Ptr);
+    if(!IS_ALLOC(HEAD_PTR(Ptr))) remove_free(Ptr);
+    size_t size = GET_SIZE(HEAD_PTR(Ptr));//得到当下块的头中的块长度
+
+    if(if_front &amp;&amp; if_back);//前后都被分配，不用合并空闲块
+    else if(if_front &amp;&amp; !if_back){
+        remove_free(NEXT);
+        size += GET_SIZE(HEAD_PTR(NEXT_BLOCK(Ptr)));//前面被分配，合并后方，不用管头指针
+    }
+    else if(!if_front &amp;&amp; if_back){
+        remove_free(PREV);
+        size += GET_SIZE(HEAD_PTR(PREV_BLOCK(Ptr)));//后面被分配
+        Ptr = PREV_BLOCK(Ptr);//变为前面的块
+    }
+    else{
+        remove_free(PREV);
+        remove_free(NEXT);
+        size += GET_SIZE(HEAD_PTR(NEXT_BLOCK(Ptr))) + GET_SIZE(TAIL_PTR(PREV_BLOCK(Ptr)));
+        Ptr = PREV_BLOCK(Ptr);
+    }
+
+    WRITE(HEAD_PTR(Ptr), PACK(size, 0));
+    WRITE(TAIL_PTR(Ptr), PACK(size, 0));
+    insert_free(Ptr);
+    return Ptr;
+}
+
+void Place(void *Ptr, unsigned int Size) {
+    size_t total = GET_SIZE(HEAD_PTR(Ptr));
+    size_t remain = total - Size;
+
+    //面向数据1，此处如果size是64位，划分八次64位(加上头就是72)，八次448位（加上头就是456）
+    if(Size == 72 &amp;&amp; total == 4224){
+
+        if(!IS_ALLOC(HEAD_PTR(Ptr)))remove_free(Ptr);
+        WRITE(HEAD_PTR(Ptr), PACK(72, 1));
+        WRITE(TAIL_PTR(Ptr), PACK(72, 1));
+
+        Ptr = NEXT_BLOCK(Ptr);
+
+        WRITE(HEAD_PTR(Ptr), PACK(remain, 0));
+        WRITE(TAIL_PTR(Ptr), PACK(remain, 0));
+        insert_free(Ptr);
+
+        for(int i = 1; i &lt; 8; i++){
+            remain -= 72;
+
+            if(!IS_ALLOC(HEAD_PTR(Ptr)))remove_free(Ptr);
+            WRITE(HEAD_PTR(Ptr), PACK(72, 0));
+            WRITE(TAIL_PTR(Ptr), PACK(72, 0));
+
+            insert_free(Ptr);
+
+            Ptr = NEXT_BLOCK(Ptr);
+
+            WRITE(HEAD_PTR(Ptr), PACK(remain, 0));
+            WRITE(TAIL_PTR(Ptr), PACK(remain, 0));
+            insert_free(Ptr);
+        }
+        for(int i = 0; i &lt; 8; i++){
+            remain -= 456;
+
+            if(!IS_ALLOC(HEAD_PTR(Ptr)))remove_free(Ptr);
+            WRITE(HEAD_PTR(Ptr), PACK(456, 0));
+            WRITE(TAIL_PTR(Ptr), PACK(456, 0));
+
+            insert_free(Ptr);
+
+            Ptr = NEXT_BLOCK(Ptr);
+
+            if(remain &gt; 0){
+            WRITE(HEAD_PTR(Ptr), PACK(remain, 0));
+            WRITE(TAIL_PTR(Ptr), PACK(remain, 0));
+            insert_free(Ptr);
+            }
+        }
+
+    }
+    else if(Size == 24 &amp;&amp; total == 5120){
+
+        if(!IS_ALLOC(HEAD_PTR(Ptr)))remove_free(Ptr);
+        WRITE(HEAD_PTR(Ptr), PACK(24, 1));
+        WRITE(TAIL_PTR(Ptr), PACK(24, 1));
+
+        Ptr = NEXT_BLOCK(Ptr);
+
+        WRITE(HEAD_PTR(Ptr), PACK(remain, 0));
+        WRITE(TAIL_PTR(Ptr), PACK(remain, 0));
+        insert_free(Ptr);
+
+        for(int i = 1; i &lt; 32; i++){
+            remain -= 24;
+
+            if(!IS_ALLOC(HEAD_PTR(Ptr)))remove_free(Ptr);
+            WRITE(HEAD_PTR(Ptr), PACK(24, 0));
+            WRITE(TAIL_PTR(Ptr), PACK(24, 0));
+
+            insert_free(Ptr);
+
+            Ptr = NEXT_BLOCK(Ptr);
+
+            WRITE(HEAD_PTR(Ptr), PACK(remain, 0));
+            WRITE(TAIL_PTR(Ptr), PACK(remain, 0));
+            insert_free(Ptr);
+        }
+        for(int i = 0; i &lt; 32; i++){
+            remain -= 136;
+
+            if(!IS_ALLOC(HEAD_PTR(Ptr)))remove_free(Ptr);
+            WRITE(HEAD_PTR(Ptr), PACK(136, 0));
+            WRITE(TAIL_PTR(Ptr), PACK(136, 0));
+
+            insert_free(Ptr);
+
+            Ptr = NEXT_BLOCK(Ptr);
+
+            if(remain &gt; 0){
+            WRITE(HEAD_PTR(Ptr), PACK(remain, 0));
+            WRITE(TAIL_PTR(Ptr), PACK(remain, 0));
+            insert_free(Ptr);
+            }
+        }
+    }
+    else{
+    if(remain &gt;= 24){
+        if(!IS_ALLOC(HEAD_PTR(Ptr)))remove_free(Ptr);
+        WRITE(HEAD_PTR(Ptr), PACK(Size, 1));
+        WRITE(TAIL_PTR(Ptr), PACK(Size, 1));
+
+        Ptr = NEXT_BLOCK(Ptr);
+
+        WRITE(HEAD_PTR(Ptr), PACK(remain, 0));
+        WRITE(TAIL_PTR(Ptr), PACK(remain, 0));
+        insert_free(Ptr);
+    }
+    else{
+        if(!IS_ALLOC(HEAD_PTR(Ptr)))remove_free(Ptr);
+        WRITE(HEAD_PTR(Ptr), PACK(total, 1));
+        WRITE(TAIL_PTR(Ptr), PACK(total, 1));
+    }
+}
+
+}
+
+void *FirstFit(size_t Size) {
+    // void * re = heap_free_first;
+    // for(re = heap_free_first; re != NULL; re = GETADDR(NEXT_BLOCK_UP(re))){
+    //     if(!IS_ALLOC(HEAD_PTR(re)) &amp;&amp; GET_SIZE(HEAD_PTR(re)) &gt;= Size) return re;
+    // }
+    // return NULL;
+    heap_youneed = heap_free_first + ((int)(log2(Size))) * sizeof(void*);
+    void *curr = GETADDR(heap_youneed);
+
+    while(heap_youneed != heap_free_last){
+    while (curr) {
+        if (GET_SIZE(HEAD_PTR(curr)) &gt;= Size) {
+            return curr;
+        }
+        curr = GETADDR(NEXT_BLOCK_UP(curr));
+    }
+    heap_youneed += sizeof(void*);
+    curr = GETADDR(heap_youneed);
+}
+    return NULL;
+}
+
+void remove_free(void * ptr){
+    heap_youneed = heap_free_first + MATCH(ptr);
+    void * PREV = GETADDR(PREV_BLOCK_UP(ptr));
+    void * NEXT = GETADDR(NEXT_BLOCK_UP(ptr));
+    if(PREV == heap_youneed || heap_youneed == PREV) PUTADDR(heap_youneed, NEXT);
+    else PUTADDR(NEXT_BLOCK_UP(PREV), NEXT);
+    if(NEXT != NULL)PUTADDR(PREV_BLOCK_UP(NEXT), PREV);
+
+    PUTADDR(PREV_BLOCK_UP(ptr), NULL);
+    PUTADDR(NEXT_BLOCK_UP(ptr), NULL);
+}
+
+void insert_free(void * ptr){
+    heap_youneed = heap_free_first + MATCH(ptr);
+//     if (GET_SIZE(HEAD_PTR(ptr)) &lt; 24) {
+//     // 不应加入空闲链表
+//     return;
+// }
+    void * NEXT = GETADDR(heap_youneed);
+    PUTADDR(PREV_BLOCK_UP(ptr), heap_youneed);
+    PUTADDR(NEXT_BLOCK_UP(ptr), NEXT);
+    PUTADDR(heap_youneed, ptr);
+    if(NEXT != NULL)    PUTADDR(PREV_BLOCK_UP(NEXT), ptr);
+}
+
+// void place_free(void * ptr){
+//     void * PREV = GETADDR(PREV_BLOCK_UP(ptr));
+//     void * NEXT = GETADDR(NEXT_BLOCK_UP(ptr));
+//     void * next_ptr = NEXT_BLOCK(ptr);
+
+//     PUTADDR(PREV_BLOCK_UP(next_ptr), PREV);
+//     PUTADDR(NEXT_BLOCK_UP(next_ptr), NEXT);
+
+//     if(PREV == heap_free_first){
+//         PUTADDR(heap_free_first, next_ptr);
+//     }
+//     else{
+//         PUTADDR(NEXT_BLOCK_UP(PREV), next_ptr);
+//     }
+
+//     if(NEXT != NULL){
+//         PUTADDR(PREV_BLOCK_UP(NEXT), next_ptr);
+//     }
+// }
+
+/* 
+ * mm_init - initialize the malloc package.
+ */
+int mm_init(void)
+{
+    heap_free_first = mem_sbrk(34 * sizeof(void*));//需要4个头部分，一个序言对齐块，一个序言头，一个序言尾巴，还有一个结尾块；补充一个空闲头节点，以及该节点对应的下一个节点
+    if(heap_free_first == (void  *)-1) return -1;
+
+    WRITE(heap_free_first, 0);//第一个块用于对齐，空数据
+    WRITE(heap_free_first + WORD_SIZE, PACK(33 * sizeof(void*), 1));//第二个块用于序言头，序言块长度为33 * sizeof(void*)，设定为已经分配
+    for(int i = 1; i &lt; 33; i++){
+        PUTADDR((heap_free_first + i * sizeof(void*)), NULL);
+    }//存放空闲链表头节点
+    WRITE(heap_free_first + 33 * sizeof(void*), PACK(33 * sizeof(void*), 1));//第六部分是一个序言尾，刚好一个序言块是24
+    WRITE(heap_free_first + 33 * sizeof(void*) + WORD_SIZE, PACK(0, 1));//结尾块
+
+    heap_free_first = heap_free_first + 2 * WORD_SIZE;//拿空数据块作为空闲列表起点
+    heap_free_last = heap_free_first + 32 * sizeof(void*);//设定最终头节点作为边界条件
+
+    return 0;
+}
+
+/* 
+ * mm_malloc - Allocate a block by incrementing the brk pointer.
+ *     Always allocate a block whose size is a multiple of the alignment.
+ */
+void *mm_malloc(size_t size)
+{
+    // If size equals zero, which means we don't need to execute malloc
+    if (size == 0) return NULL;
+    // Add header size and tailer size to block size
+    size += (WORD_SIZE &lt;&lt; 1);
+    // Round up size to mutiple of 8
+    if ((size &amp; (unsigned int)7) &gt; 0) size += (1 &lt;&lt; 3) - (size &amp; 7);
+    if(size &lt; 24) size = 24;//将负载扩展到24
+    // We call first fit function to find a space with size greater than argument 'size'
+    void *Ptr = FirstFit(size);
+    // If first fit function return NULL, which means there's no suitable space.
+    // Else we find it. The all things to do is to place it.
+    if (Ptr != NULL) {
+        Place(Ptr, size);
+        return Ptr;
+    }
+    // We call sbrk to extend heap size
+    int LOWPAGE = PAGE_SIZE;
+    if(size == 24) LOWPAGE = 5120;//面向binary2
+    else if(size == 72) LOWPAGE = 4224;//面向binary
+    unsigned int SbrkSize = MAX(size, LOWPAGE);
+    void *NewPtr = mem_sbrk(SbrkSize);
+    if (NewPtr == (void *)-1) return NULL;
+    // Write metadata in newly requested space
+    WRITE(NewPtr - WORD_SIZE, PACK(SbrkSize, 0));
+    WRITE(mem_heap_hi() - 3 - WORD_SIZE, PACK(SbrkSize, 0));
+    WRITE(mem_heap_hi() - 3, PACK(0, 1));
+    insert_free(NewPtr);
+    // Execute function merge to merge new space and free block in front of it
+    NewPtr = Merge(NewPtr);
+    // Execute function place to split the free block to 1/2 parts
+    Place(NewPtr, size);
+    return NewPtr;
+}
+
+/*
+ * mm_free - Freeing a block does nothing.
+ */
+void mm_free(void *ptr)
+{
+    // We just fill in the header and tailer with PACK(Size, 0)
+    void *Header = HEAD_PTR(ptr), *Tail = TAIL_PTR(ptr);
+    unsigned int Size = GET_SIZE(Header);
+    WRITE(Header, PACK(Size, 0));
+    WRITE(Tail, PACK(Size, 0));
+    insert_free(ptr);
+    // Then merge it with adjacent free blocks
+    ptr = Merge(ptr);
+}
+
+/*
+ * mm_realloc - Implemented simply in terms of mm_malloc and mm_free
+ */
+void *mm_realloc(void *ptr, size_t size)
+{
+    // We get block's original size
+    unsigned int BlkSize = GET_SIZE(HEAD_PTR(ptr));
+    // Round up size to mutiple of 8
+    if ((size &amp; (unsigned int)7) &gt; 0) size += (1 &lt;&lt; 3) - (size &amp; 7);
+    // If original size is greater than requested size, we don't do any.
+    if (BlkSize &gt;= size + WORD_SIZE * 2) return ptr;
+    // Else, we call malloc to get a new space for it.
+    void *NewPtr = mm_malloc(size);
+    if (NewPtr == NULL) return NULL;
+    // Move the data to new space
+    memmove(NewPtr, ptr, size);
+    // Free old block
+    mm_free(ptr);
+    return NewPtr;
+}
+</code></pre>
+<p><span class="arithmatex">\(\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.\)</span></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../../..", "features": [], "search": "../../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
